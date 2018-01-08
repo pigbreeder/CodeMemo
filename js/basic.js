@@ -5,8 +5,16 @@ global_var = 'global_var';
 console.log(typeof (global_var) == 'string');
 console.log(typeof (undefined_var) == 'undefined');
 
-
-
+// array 操作
+// 创建
+arr = new Array();
+arr = [];
+arr = [1,2,3,false, null,0, undefined,NaN,''];
+// 过滤空值
+arr = arr.filter(function(val){
+    return !(!val || val === "");
+  });
+console.log(arr);
 
 $(function () {
     // 获取一类元素中被点击的
