@@ -79,6 +79,14 @@ $(function () {
         }
     }
     SolidCircle(450, 200, 20, 5, "green");
+
+
+    // ajax
+    // jquery ajax发送有问题
+    // http://www.jb51.net/article/32540.htm
+    //　   1）键名称：用双引号 括起 
+    // 　　2）字符串：用使用双引号 括起 
+    // 　　3）数字，布尔类型不需要 使用双引号 括起
     $("#send_ajax").click(function() {
         data = new Object();
         data.a = 'haha';
