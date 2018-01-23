@@ -20,15 +20,23 @@
            td.appendTo(tr);
         }
      }
-     trend.appendTo(table);
+     // trend.appendTo(table);
      $("#createtable").append("</table>");
   }
+  $(function() {
+     $("#check1").click(function(){
+    // alert('asdf');
+    alert($(this).is(':checked'))
+  });
+  })
+ 
 </script>
 </head>
  
 <body>
 <input type="button" value="添加表格" onClick="CreateTable(5,6)" >
 <input type="button" value="添加行">
+<input type="checkbox" id="check1">你喜欢夏天吗?
 <div id="createtable"></div>
 <div id="createrow"></div>
 </body>

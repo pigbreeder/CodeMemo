@@ -1,0 +1,13 @@
+# cameraSpace ColorSpace
+http://nw.tsuda.ac.jp/lec/kinect2/KinectV2_depth2/index-en.html
+
+https://stackoverflow.com/questions/27889646/kinect-v2-mapping-color-coordinates-to-camera-space
+
+python opencv 
+http://blog.csdn.net/sunny2038/article/details/9057415
+
+python struct
+http://blog.csdn.net/anzi5091104/article/details/70156693
+
+
+kinect 深度可用范围在0.5~4.5米之间

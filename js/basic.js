@@ -1,3 +1,12 @@
+// 引用测试
+// basic.js中不能直接使用config.js中定义的内容，所有的入口都应该从html中调用开始才能引用到
+document.write("<script language='javascript' src='config.js'></script>");
+// 常量
+// console.log(COLOR_MARK_IDX);
+
+function invoke_config_func(test){
+    config_test(test + 'basic.js');
+}
 
 // 全局变量:在函数外声明;函数内不使用var
 global_var = 'global_var';
@@ -9,12 +18,22 @@ console.log(typeof (undefined_var) == 'undefined');
 // 创建
 arr = new Array();
 arr = [];
-arr = [1,2,3,false, null,0, undefined,NaN,''];
+arr = [1,2,3,false, null,0, undefined,NaN,'','hello'];
 // 过滤空值
 arr = arr.filter(function(val){
     return !(!val || val === "");
   });
 console.log(arr);
+
+// 数组复制
+arr_cpy1 = arr.slice();
+arr_cpy2 = arr;
+console.log(arr_cpy1 === arr);
+console.log(arr_cpy2 === arr);
+// 数组截取
+arr_slice = arr.slice(1,2);
+console.log(arr_slice);
+
 
 $(function () {
     // 获取一类元素中被点击的
