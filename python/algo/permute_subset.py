@@ -1,6 +1,7 @@
 #encoding=utf8
 #全排列/子集
-#
+# 字符串的字典序排第n的字符串是什么
+# https://blog.csdn.net/L123012013048/article/details/49538237
 #全不同
 def permute(nums, st, ed, ret):
     if st == ed:
