@@ -1,5 +1,16 @@
 #!/usr/bin/env python
 # encoding: utf-8
+# 
+# 加载顺序
+# 能被 import 的包括：package，package 中的模块，模块中的变量。影响 import 的属性是 __all__， __all__ 是个list，能够影响被 package 中 以 from package import * 被导出的模块，即定义在__all__ 中的模块才会被 from package import * 导出。
+# https://wecatch.me/blog/2016/05/28/python-module-path-find/
+# import加载顺序
+# sys.builtin_module_names
+# sys.modules
+# sys.path
+# pythonpath
+# 然后是python安装时设置的相关默认路径。
+# logging http://huangming.work/2016-05-29-python-log.html
 import random
 from datetime import datetime
 dt = datetime.now()

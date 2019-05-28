@@ -1,5 +1,5 @@
 #!/bin/bash
-less -r 是看控制字符
+#less -r 是看控制字符   #先用U再用r会有改变否则没啥变化
 less -U 是将tab回车看成控制字符
 cat -Te filename # man cat
 vim 输入 Ctrl+V + 十进制
