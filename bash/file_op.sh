@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# 合并两行
+paste -d "\t"  - - < filename
+awk 'NR%2{printf "%s ",$0;next;}1' yourFile
+sed 'N;s/\n/ /' yourFile
+awk '{key=$0; getline; print key ", " $0;}'
+
 curdir=`cd $(dirname $0);pwd` #进入执行脚本的路径并返回
 basename filename #得到文件名
 

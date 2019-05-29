@@ -30,6 +30,20 @@ source $CONF_PATH/my.conf
 #4.${var//Pattern/Replacement}：所有在变量var匹配Pattern的字符串, 都会被替换为Replacement。
 #5.${var/#Pattern/Replacement}：如果变量var从开头开始的字符能匹配Pattern, 那么就使用Replacement来替换匹配到Pattern的字符串，否则保存var不变
 #6.${var/%Pattern/Replacement}：如果变量var的后缀匹配Pattern, 那么就使用Replacement来替换匹配到Pattern的字符串
+getTime(){
+	now_day=`date '+%Y-%m-%d %H:%M'`
+    last_time=`date -d"-1 ${task_frequency} ${now_day}" "+%Y-%m-%d %H:%M"`
+    # 时间使用
+	date -d '1d' "+%Y%m%d"
+	date +%Y%m%d --date="-1 day"
+	date +%Y%m%d --date="-1 month"
+	date +%Y%m%d --date="+1 year"
+
+	# Unix时间戳
+	date +%s  #1559098555
+	date -d '2010-2-22 22:14' +%s
+	date -d @1361542596 +"%Y-%m-%d %H:%M:%S"
+}
 array(){
 	#声明
 	a=(3 9 "234" 3.2 2 0 )
