@@ -1,10 +1,6 @@
 #!/bin/bash
 
-# 合并两行
-paste -d "\t"  - - < filename
-awk 'NR%2{printf "%s ",$0;next;}1' yourFile
-sed 'N;s/\n/ /' yourFile
-awk '{key=$0; getline; print key ", " $0;}'
+
 
 curdir=`cd $(dirname $0);pwd` #进入执行脚本的路径并返回
 basename filename #得到文件名
@@ -24,6 +20,9 @@ head -n 1000 #显示前面1000行
 #【三】用sed命令
 sed -n '5,10p' filename #这样你就可以只查看文件的第5行到第10行。
 
+#find========================================================================
+#查找所有".h"文件中的含有"helloworld"字符串的文件（组合命令）
+find /PATH -name "*.h" -exec grep -in "helloworld" {} \;
 #获取文件夹
 folders=`ls -F|grep '\/$' `
 #进入文件夹获取文件 or:`ls -F|grep -v '\/$' `

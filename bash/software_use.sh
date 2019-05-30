@@ -3,7 +3,10 @@
 less -U 是将tab回车看成控制字符
 cat -Te filename # man cat
 vim 输入 Ctrl+V + 十进制
-
+去除^M   %s/\r$//
+Ctrl + L 重新渲染
+查看不可见字符
+:set invlist/list
 
 
 jobs, fg, bg, kill, C-z &

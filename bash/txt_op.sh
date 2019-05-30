@@ -1,9 +1,11 @@
 #!/bin/bash
+# 合并两行
+paste -d "\t"  - - < filename
+awk 'NR%2{printf "%s ",$0;next;}1' yourFile
+sed 'N;s/\n/ /' yourFile
+awk '{key=$0; getline; print key ", " $0;}'
 
-#find========================================================================
-#查找所有".h"文件中的含有"helloworld"字符串的文件（组合命令）
-find /PATH -name "*.h" -exec grep -in "helloworld" {} \;
-
+awk 'NF' file # 去除空行
 #Cut=========================================================================
 #https://www.cnblogs.com/dong008259/archive/2011/12/09/2282679.html
 #-c ：以字符为单位进行分割，-d选项的默认间隔符就是制表符，-f取域。
@@ -51,11 +53,11 @@ sort:排序默认分隔符是tab和空格 若要指定使用 sort -t$'\t' a.txt
 #正则  ~  !~ 匹配/不匹配
 awk 'BEGIN{info="this is a test";if( info ~ /test/){print "ok"}}'
 awk 'length>80' file #从file文件中找出长度大于80的行
-awk 'NF' file # 去除空行
-输出单引号
+
+#输出单引号
 awk '{print "'\''"}'  因为'中不能使用跳脱符 同理： a='asdf'\''fdas'
 awk '{print "\""}' 
-正则  ~  !~ 匹配/不匹配
+#正则  ~  !~ 匹配/不匹配
 awk 'BEGIN{info="this is a test";if( info ~ /test/){print "ok"}}' 
 #1. sub函数 sub函数只实现第一个位置的替换，gsub函数实现全局的替换。
 echo "a b c 2011-11-22 a:d" | awk 'sub(/-/,"",$4)'
