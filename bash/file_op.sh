@@ -37,13 +37,6 @@ for folder in $folders; do
         done
         cd -
 done
-#find========================================================================
-#查找所有".h"文件中的含有"helloworld"字符串的文件（组合命令）
-find /PATH -name "*.h" -exec grep -in "helloworld" {} \;
-
-
-echo "Ã" | hexdump -C
-echo "Ã" |sed 's/\xc3\x83/A/g'
 #join命令####==================================================================
 功能：“将两个文件里指定栏位同样的行连接起来”，即依照两个文件里共有的某一列，将相应的行拼接成一行。
 join [options] file1 file2

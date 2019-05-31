@@ -1,21 +1,5 @@
 #!/bin/bash
 set -x
-
-#加法：
-n=10
-let n=n+1
-echo $n #n=11
-#乘法：
-let m=n*10
-echo $m
-#除法：
-let r=m/10
-echo $r
-#求余数：
-let r=m%7
-echo $r
-let r=m**2
-echo $r
 curdir=`cd $(dirname $0);pwd`
 #如果变量var没有被声明，那么就使用默认值，否则就是用var初始化的值
 export CONF_PATH=${CONF_PATH:-"$curdir/../conf"} 
@@ -30,6 +14,17 @@ source $CONF_PATH/my.conf
 #4.${var//Pattern/Replacement}：所有在变量var匹配Pattern的字符串, 都会被替换为Replacement。
 #5.${var/#Pattern/Replacement}：如果变量var从开头开始的字符能匹配Pattern, 那么就使用Replacement来替换匹配到Pattern的字符串，否则保存var不变
 #6.${var/%Pattern/Replacement}：如果变量var的后缀匹配Pattern, 那么就使用Replacement来替换匹配到Pattern的字符串
+
+# https://blog.csdn.net/ljianhui/article/details/43128465
+# var=/dir1/dir2/dir3/train_data/a.txt
+# dirname=${var%/*}   dirname $var
+# filename=${var##*/} basename $var
+# file_suffix=${var##*.} basename $var .txt # basename without suffix
+# #：表示从左边算起第一个
+# %：表示从右边算起第一个
+# ##：表示从左边算起最后一个
+# %%：表示从右边算起最后一个
+# 换句话来说，＃总是表示左边算起，％总是表示右边算起。
 getTime(){
 	now_day=`date '+%Y-%m-%d %H:%M'`
     last_time=`date -d"-1 ${task_frequency} ${now_day}" "+%Y-%m-%d %H:%M"`
@@ -44,6 +39,26 @@ getTime(){
 	date -d '2010-2-22 22:14' +%s
 	date -d @1361542596 +"%Y-%m-%d %H:%M:%S"
 }
+# 正则匹配
+# 进行正则比对需要放在[[ ]]中，但是只有bash支持[[ ]]
+# 正则不能加引号
+regMatch(){
+	#遍历文件夹,获取以.png结尾
+	for file in *;do
+	#echo $file
+	reular="/*.mp3/"
+	if [[ $file =~ (.*)png ]]; then
+	#$path $file _$file
+	echo $file
+	echo #{$1}
+	echo "0 ${BASH_REMATCH[0]}"
+	echo "1 ${BASH_REMATCH[1]}"
+	fi
+done
+re="http://([^/]+)/"
+if [[ $name =~ $re ]]; then echo ${BASH_REMATCH[1]}; fi
+}
+
 array(){
 	#声明
 	a=(3 9 "234" 3.2 2 0 )
@@ -62,7 +77,23 @@ array(){
 	echo $var
 	done
 }
-
+function calc(){
+	#加法：
+	n=10
+	let n=n+1
+	echo $n #n=11
+	#乘法：
+	let m=n*10
+	echo $m
+	#除法：
+	let r=m/10
+	echo $r
+	#求余数：
+	let r=m%7
+	echo $r
+	let r=m**2
+	echo $r
+}
 function str(){
 	str='hello world'
 	echo ${#str}

@@ -4,7 +4,8 @@ paste -d "\t"  - - < filename
 awk 'NR%2{printf "%s ",$0;next;}1' yourFile
 sed 'N;s/\n/ /' yourFile
 awk '{key=$0; getline; print key ", " $0;}'
-
+#交换两列
+awk '{print $2,$1 > "id.txt"}' id.txt
 awk 'NF' file # 去除空行
 #Cut=========================================================================
 #https://www.cnblogs.com/dong008259/archive/2011/12/09/2282679.html
@@ -35,7 +36,15 @@ sort:排序默认分隔符是tab和空格 若要指定使用 sort -t$'\t' a.txt
 #* ：有字符，长度可以为0。
 #\< 相当于\b 
 
-
+#Sed=========================================================================
+echo "Ã" | hexdump -C
+echo "Ã" |sed 's/\xc3\x83/A/g'
+# 替换匹配的文本中部分内容
+sed 's/\(前一部分\)要替换的部分\(后一部分\)/\1替换后的字符串\2/' 
+echo '123abc123' | sed 's/\([0-9]\{2,2\}\)[a-zA-Z]\{3,3\}\([0-9]\{3,3\}\)/\1aaa\2/' 
+# 替换指定行内容，改变文件内容
+var=hello
+sed "4s/log.eval.batch.*/log.eval.batch.$var/g" 
 
 #Awk=========================================================================
 #https://www.cnblogs.com/chengmo/tag/awk/
@@ -109,16 +118,3 @@ a[3]=34;
 for(i in a)
 {print i,a[i] | "sort -r -n -k2";}
 }'
-
-#Sed=========================================================================
-
-echo "Ã" | hexdump -C
-echo "Ã" |sed 's/\xc3\x83/A/g'
-
-
-uniq:重复内容只显示一次 去除排序过的文件中的重复行
-wc:统计单词数  行数 单词数 字符数
-tee:双向重定向
-tr:删除或替换数据col:转化为纯文本join:将两个文件中相关信息放在一起
-cat paste:行合并；列合并
-split:将大文件传为小文件
