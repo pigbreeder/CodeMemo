@@ -4,8 +4,10 @@ paste -d "\t"  - - < filename
 awk 'NR%2{printf "%s ",$0;next;}1' yourFile
 sed 'N;s/\n/ /' yourFile
 awk '{key=$0; getline; print key ", " $0;}'
-#交换两列
+# 交换两列
 awk '{print $2,$1 > "id.txt"}' id.txt
+# 分列输出
+awk -F'\t' '{print $1>"file1"; print $2>"file2"}' file
 awk 'NF' file # 去除空行
 #Cut=========================================================================
 #https://www.cnblogs.com/dong008259/archive/2011/12/09/2282679.html
@@ -118,3 +120,6 @@ a[3]=34;
 for(i in a)
 {print i,a[i] | "sort -r -n -k2";}
 }'
+
+# 统计每列最大长度
+awk -F'\t' 'NR>1{cols=(cols<=NF?NF:cols); for (i=1; i<=NF; i++) max[i]=(length($i)>max[i]?length($i):max[i])} END {for (i=1; i<=cols; i++) printf "%d%s", max[i], (i==cols?RS:FS)}'
