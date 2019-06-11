@@ -21,6 +21,10 @@ head -n 1000 #显示前面1000行
 sed -n '5,10p' filename #这样你就可以只查看文件的第5行到第10行。
 
 #find========================================================================
+# find . -name 'patten' -print0|xargs --null Do something
+find ./ -mtime 0  #查找一天内修改的文件
+find ./ -mtime -2 #查找2天内修改的文件，多了一个减号
+find ./ -mmin  -10  #查找距离现在10分钟内修改的文件
 #查找所有".h"文件中的含有"helloworld"字符串的文件（组合命令）
 find /PATH -name "*.h" -exec grep -in "helloworld" {} \;
 #获取文件夹

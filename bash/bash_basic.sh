@@ -5,6 +5,8 @@ curdir=`cd $(dirname $0);pwd`
 export CONF_PATH=${CONF_PATH:-"$curdir/../conf"} 
 #配置文件
 source $CONF_PATH/my.conf
+#变量引号处理/连接起来
+echo 'fuck'$fuck"fuck"
 #默认程序
 #source $curdir/common.sh
 #

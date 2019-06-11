@@ -7,7 +7,9 @@ vim 输入 Ctrl+V + 十进制
 Ctrl + L 重新渲染
 查看不可见字符
 :set invlist/list
-
+# 查找匹配的有多少个
+:%s/pattern/&/g
+# & 代表的意思就是用来表示前面比对的字串，所以做这个指令其实对档案本身并不会有什麽改变。但是由於做的是全域的取代置换， vim 会告诉你有从多少行中多少个字串被取代。轻轻松松很漂亮地用一行命令解决这个问题。
 
 jobs, fg, bg, kill, C-z &
 http://www.cnblogs.com/mfryf/archive/2012/05/09/2491322.html

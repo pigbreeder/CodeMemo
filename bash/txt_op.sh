@@ -47,7 +47,8 @@ echo '123abc123' | sed 's/\([0-9]\{2,2\}\)[a-zA-Z]\{3,3\}\([0-9]\{3,3\}\)/\1aaa\
 # 替换指定行内容，改变文件内容
 var=hello
 sed "4s/log.eval.batch.*/log.eval.batch.$var/g" 
-
+# 对于路径中/的处理
+sed -i "s#parent_dir=.*#parent_dir=${parent_dir}#g" ./basic.conf
 #Awk=========================================================================
 #https://www.cnblogs.com/chengmo/tag/awk/
 #$0	当前记录（作为单个变量）
