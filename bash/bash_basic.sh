@@ -74,7 +74,7 @@ array(){
 	echo ${a[2]}
 	echo ${a[3]},${b[0]},${b[1]}
 
-	filename=(`ls`)
+	filename=($(ll|grep hehe))
 	for var in ${filename[@]};do
 	echo $var
 	done

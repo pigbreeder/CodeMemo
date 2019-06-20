@@ -2,7 +2,8 @@ ar 创建修改库
 nm 列出目标文件的符号清单
 ldd 查看文件链接库
 https://blog.csdn.net/u010977122/article/details/52993560 
-
+```
+pkg-config 是用来g++ 编译链接时的简易写法，PKG_CONFIG_PATH
 
 #搜索动态库的先后顺序
 编译目标代码时指定的动态库搜索路径
@@ -67,3 +68,15 @@ LDFLAGS是告诉链接器从哪里寻找库文件，而LIBS是告诉链接器要
 ar -r libhello.a hello.o 创建一个新库libhello.a
 使用 
 `gcc test.c libhello.a -L. -o hello.static` 生成的hello.static就不再依赖libhello.a
+
+
+
+## CMake
+CMAKE_INSTALL_PREFIX  默认安装路径(/usr/local)
+CMAKE找包是通过xx.make文件指定的，如果改变也是更改MAKEXX_PATH，或者指定
+
+```cmake -DOpenCV_DIR='D:\coding\opencv3.2\opencv\build' .. 
+https://blog.csdn.net/yang__jing/article/details/88118994``
+
+cmake 编译之前可以指定CUDA版本
+```CUDA_BIN_PATH=/usr/local/cuda9.0 instead of the default /usr/local/cuda```
