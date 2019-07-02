@@ -1,3 +1,6 @@
+# ref
+# https://blog.csdn.net/u012839187/article/details/45790491
+# https://blog.csdn.net/pyl88429/article/details/78203140
 cmake_minimum_required(VERSION 3.2)
 project(test)
 set (Tutorial_VERSION_MAJOR 1)

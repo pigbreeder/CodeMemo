@@ -33,3 +33,8 @@ netstat -apn|grep your_port
 #查看线程状况
 pstree -p [pid]
 top -Hp pid
+
+# 文件标识符，用这个命令在文件夹目录下run
+find -type f -exec sha1sum {} \; | sort | sha1sum | head -c 5 && echo
+
+alias cuda8='cuda8(){ export CUDA_HOME=/usr/local/cuda-8.0;export CUDA_ROOT=$CUDA_HOME;export PATH=$CUDA_HOME/bin:$PATH;export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH;export LIBRARY_PATH=$CUDA_HOME/lib64:$LIBRARY_PATH;};cuda8'

@@ -24,3 +24,13 @@ self.bpe_codes = [tuple(item.split()) for item in codes]
 self.bpe_codes = dict([(code,i) for (i,code) in reversed(list(enumerate(self.bpe_codes)))])
 # tuple把每个单词都拆掉
 word = tuple(orig[:-1]) + ( orig[-1] + '</w>',)
+
+
+
+#Mask矩阵应用
+#https://www.zhihu.com/question/305508138
+def subsequent_mask(size):
+    "Mask out subsequent positions."
+    attn_shape = (1, size, size)
+    subsequent_mask = np.triu(np.ones(attn_shape), k=1).astype('uint8')
+    return torch.from_numpy(subsequent_mask) == 0
