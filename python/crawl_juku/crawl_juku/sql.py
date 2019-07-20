@@ -1,6 +1,7 @@
 import sqlite3
 from log_init import Log
-conn = sqlite3.connect('test.db')
+from init_sql import sql_file
+conn = sqlite3.connect(sql_file)
 cur = conn.cursor()
 log = Log()
 class Sql:

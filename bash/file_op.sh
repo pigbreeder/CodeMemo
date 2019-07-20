@@ -1,5 +1,22 @@
 #!/bin/bash
 
+#https://blog.csdn.net/HDUTigerkin/article/details/6612212
+#shell中read -r 才能得到\t，同时使用要是"line " 读文件
+n=1
+#这种在循环外得不到n的数值
+cat file |while read -r line; 
+do
+	cn=`echo "$line"|cut -f2` #双引号是为了得到\t的输入
+	let "n++" 
+done
+echo $n
+#这种在循环外可以
+while read -r line; 
+do
+	cn=`echo "$line"|cut -f2` 
+	let "n++" 
+done<file
+echo $n
 
 
 curdir=`cd $(dirname $0);pwd` #进入执行脚本的路径并返回
