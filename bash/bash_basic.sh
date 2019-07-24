@@ -18,6 +18,9 @@ echo 'fuck'$fuck"fuck"
 #6.${var/%Pattern/Replacement}：如果变量var的后缀匹配Pattern, 那么就使用Replacement来替换匹配到Pattern的字符串
 
 # https://blog.csdn.net/ljianhui/article/details/43128465
+# https://blog.csdn.net/qq_33951180/article/details/68059098
+# # 和 ## 号截取字符串（删左边留右边）
+# % 和%% 号截取（删右边留左边） 
 # var=/dir1/dir2/dir3/train_data/a.txt
 # dirname=${var%/*}   dirname $var
 # filename=${var##*/} basename $var

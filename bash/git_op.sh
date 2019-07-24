@@ -1,5 +1,10 @@
 #!/bin/bash
 #https://www.zhihu.com/question/21215715
+# 设置颜色
+git config --global color.status auto  
+git config --global color.diff auto  
+git config --global color.branch auto  
+git config --global color.interactive auto  
 #
 #git 冲突处理
 $ git checkout - -ours xxx/A.java # 选取当前分支的结果

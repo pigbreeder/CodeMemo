@@ -14,6 +14,15 @@
 import random
 from datetime import datetime
 dt = datetime.now()
+
+# print 直接到文件
+# print(*objects, sep=' ', end='\n', file=sys.stdout, flush=False) #py3
+# print >> f, "%3d %0.2f" % (year, principal)  #py2
+with open('file.txt', 'w') as f:
+    print('hello world', file=f)
+
+
+
 # list 复制
 random_lst = [random.random() for i in range(10)]
 cpy_random_lst = random_lst[:]
