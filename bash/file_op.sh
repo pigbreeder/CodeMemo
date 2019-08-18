@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# 批量修改文件名
+for x in * ; do
+    if [[ "$x" =~ translate_-train.* ]] ; then
+        xx=`echo $x| sed 's/translate_-train/translate_ctx_hiri_-train/' `
+        echo $xx,$x
+    mv $x $xx
+    fi
+done
+
 #https://blog.csdn.net/HDUTigerkin/article/details/6612212
 #shell中read -r 才能得到\t，同时使用要是"line " 读文件
 n=1

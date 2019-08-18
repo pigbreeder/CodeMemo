@@ -84,12 +84,25 @@ def class2dict():
 def useFile():
     with open('file1' + dt.strftime( '%Y_%m_%d_%H_%M_%S_%f' ), 'w') as f1, \
         open('file2' + dt.strftime( '%Y_%m_%d_%H_%M_%S_%f' ), 'w') as f2:
+        for x,y in zip(f1.readlines(),f2.readlines()):
+            print(x,y)
         f1.write('haha')
         f2.write('shii')
 
     with open('file1' + dt.strftime( '%Y_%m_%d_%H_%M_%S_%f' ), 'r') as f:
         lines = f.readlines()
         print(lines)
+from contextlib import nested #这个包是python2中的，不使用python3
+with nested(open('file1'), open('file2'), open('file3')) as (f1,f2,f3):
+ for i in f1:
+  j = f2.readline()
+  k = f3.readline()
+  print(i,j,k)
+# py3
+from contextlib import ExitStack
+with ExitStack() as stack:
+    files = [stack.enter_context(open(fname)) for fname in filenames]
+    # Do something with "files"
 # json
 # loads/dumps 得到字符串, laod/dump 直接写入文件
 # python的json.dumps方法默认会输出成这种格式"\u535a\u5ba2\u56ed",
@@ -98,3 +111,10 @@ def useFile():
 # 重新加载包
 # import importlib
 # importlib.reload(AugDataset)
+
+# 字符串
+# 遍历每个unicode词
+str = '我是abc'
+str = str.decode('utf-8')
+for index in range(len(str)):
+    print str[index]
