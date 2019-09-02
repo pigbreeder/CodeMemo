@@ -1,1 +1,0 @@
-tensorboard --logdir j2c:model_jp2cn_1217/,c2j:model_cn2jp_1217/ --port 2333  

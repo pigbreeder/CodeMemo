@@ -54,7 +54,8 @@ sed -i "s#parent_dir=.*#parent_dir=${parent_dir}#g" ./basic.conf
 #https://www.cnblogs.com/chengmo/tag/awk/
 #$0	当前记录（作为单个变量）
 #$1~$n	当前记录的第n个字段，字段间由FS分隔
-#FS	输入字段分隔符 默认是空格
+#FS	输入字段分隔符 默认是空格 通过用 -F 传参设置   https://www.cnblogs.com/kingstarer/p/6059978.html
+#    如果FS设置了不止一个字符作为字段分隔符，将作为一个正则表达式来解释，否则直接按该字符做为分隔符对每行进行分割。
 #NF	当前记录中的字段个数，就是有多少列
 #NR	已经读出的记录数，就是行号，从1开始
 #RS	输入的记录他隔符默 认为换行符
