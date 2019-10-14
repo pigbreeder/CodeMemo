@@ -1,4 +1,14 @@
-ar 创建修改库
+## gdb 使用
+https://www.cnblogs.com/secondtonone1/p/5732938.html
+https://www.cnblogs.com/wuyuegb2312/archive/2013/03/29/2987025.html
+1 ulimit -c unlimited
+2 重新编译，增加-g选项(增加行号)
+2 gdb your_exe_file
+3 core-file core.file
+4 bt // 查看调用链
+
+
+## ar 创建修改库
 nm 列出目标文件的符号清单
 ldd 查看文件链接库
 https://blog.csdn.net/u010977122/article/details/52993560 

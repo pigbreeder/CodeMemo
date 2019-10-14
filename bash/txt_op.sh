@@ -38,7 +38,10 @@ sort:排序默认分隔符是tab和空格 若要指定使用 sort -t$'\t' a.txt
 #.  ：所有的单个字符。
 #* ：有字符，长度可以为0。
 #\< 相当于\b 
-
+grep -rio --exclude-dir={ece,pytorch,sys,proc} 'hello' /
+-R 链接符号的文件也搜索
+仅搜索单词 -w
+egrep 'word1|word2'
 #Sed=========================================================================
 echo "Ã" | hexdump -C
 echo "Ã" |sed 's/\xc3\x83/A/g'
