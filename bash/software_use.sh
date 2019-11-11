@@ -1,6 +1,11 @@
 #!/bin/bash
 #less -r 是看控制字符   #先用U再用r会有改变否则没啥变化
-less -U 是将tab回车看成控制字符
+=  临时显示百分比，文件名
+-M 显示百分比，文件名 
+-N 显示行号
+-U 查看特殊控制字符
+
+
 cat -Te filename # man cat
 vim 输入 Ctrl+V + 十进制
 去除^M   %s/\r$//
