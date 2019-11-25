@@ -23,7 +23,7 @@ function log {
     {  
     case $logtype in 
         debug)
-            [[ $loglevel -le 0 ]] && echo -e "\033[1;37m${logformat}\033[0m" ;;
+            [[ $loglevel -le 0 ]] && echo -e "\033[1;34m${logformat}\033[0m" ;;
         info)
             [[ $loglevel -le 1 ]] && echo -e "\033[1;32m${logformat}\033[0m" ;;
         warn)
@@ -33,6 +33,33 @@ function log {
     esac
     } | tee -a $logfile
 }
+       
+# lrun "ps -ef |grep ssh"
+# get result:lrun_out
+lrun() {             
+    lrun_out=''      
+    log info "in lrun params:$@"
+    [[ $loglevel -ge 1 ]] && lrun_out=`eval $@`
+}                    
+                     
+function check_sbatch_is_finished() {
+    local sleep_num=100 
+    sleep 2          
+    local sid=`squeue|grep $1`
+    log info "check_finished  $1 ."
+    while :          
+    do               
+        if [[ "$sid" == "" ]]; then
+            log info "sbatch $1 finished."
+            break    
+        fi           
+                     
+        sleep $sleep_num
+        sid=`squeue|grep $1`
+        log info "sbatch $1 is still running."
+    done             
+}                    
+
 # https://www.jb51.net/article/108721.htm
 # caller[expr] 没有指定expr时，显示当前子程序调用的行号和源文件名。如果expr是一个非负整数，显示当前子程序调用的行号、子程序名和源文件名。
 # $LINENO 当前行号
