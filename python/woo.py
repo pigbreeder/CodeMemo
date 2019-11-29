@@ -1,3 +1,8 @@
+# 得到符合的数据下标
+filter_idx = list(filter(lambda x: words[x] in dict_table, range(len(words))))
+# 从列表中挑选(如果是numpy则直接data[filter_idx]。字典智能挨个找，numpy也没用
+# print 中逗号会输出空格。要注意
+prob = [dict_table[words[i]][1] for i in filter_idx]
 #补全长度 #
 seq[i] = seq[i] + 'P' * (n_step - len(seq[i]))
 #对应位置赋值为1（one-hot编码） #
@@ -13,8 +18,8 @@ vocb = set(test_sentence) # 通过set将重复的单词去掉
 word_to_idx = {word: i for i, word in enumerate(vocb)}
 idx_to_word = {word_to_idx[word]: word for word in word_to_idx}
 
-trigram = [((test_sentence[i], test_sentence[i-1]), test_sentence[i-2])
-           for i in range(len(test_sentence)-2)]
+def find_ngrams(input_list, n):
+  return zip(*[input_list[i:] for i in range(n)])
 
 #BPE
 #先拆分最早结合的词是因为先合并先拆开更能看到剩余的新词
