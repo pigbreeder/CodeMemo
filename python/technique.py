@@ -10,6 +10,22 @@ np.eye(n_class)[input]
 #四位对齐
 string += '=' * (-len(string) % 4) 
 
+# choices归一化
+p = np.array(p)
+filter_idx = np.random.choice(filter_idx, 2 if np.random.rand()> 0.5 else 1, False,p/p.sum())
+
+# 显示进度条
+import mmap
+def get_num_lines(file_path):
+    fp = open(file_path, "r+")
+    buf = mmap.mmap(fp.fileno(), 0)
+    lines = 0
+    while buf.readline():
+        lines += 1
+    return lines
+for idx, line in enumerate(tqdm(fi, total=get_num_lines(input_file)), 1):
+	pass
+
 # NLP预处理
 test_sentence = """When forty winters shall besiege thy brow,
 And dig deep trenches in thy beauty\\'s field.""".split()
@@ -39,3 +55,7 @@ def subsequent_mask(size):
     attn_shape = (1, size, size)
     subsequent_mask = np.triu(np.ones(attn_shape), k=1).astype('uint8')
     return torch.from_numpy(subsequent_mask) == 0
+
+# 字符判断
+# https://zhuanlan.zhihu.com/p/84625185 语言检查
+# https://www.168seo.cn/python/1993.html

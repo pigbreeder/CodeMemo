@@ -129,3 +129,7 @@ for(i in a)
 
 # 统计每列最大长度
 awk -F'\t' 'NR>1{cols=(cols<=NF?NF:cols); for (i=1; i<=NF; i++) max[i]=(length($i)>max[i]?length($i):max[i])} END {for (i=1; i<=cols; i++) printf "%d%s", max[i], (i==cols?RS:FS)}'
+
+# 字符串中某个字符出现次数
+# http://bbs.chinaunix.net/thread-1026122-1-1.html
+echo "abcdabc1234abc" | awk -F'a' '{print NF-1}'
