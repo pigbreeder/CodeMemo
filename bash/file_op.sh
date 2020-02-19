@@ -51,6 +51,16 @@ sed -n '5,10p' filename #这样你就可以只查看文件的第5行到第10行�
 find ./ -mtime 0  #查找一天内修改的文件
 find ./ -mtime -2 #查找2天内修改的文件，多了一个减号
 find ./ -mmin  -10  #查找距离现在10分钟内修改的文件
+
+# 找出 3 天”以前”被改动过的文件 (前第三天以前 → 2017/11/25 12:00 以前的文件) (> 72 小时)
+find /var/log/ -mtime +3 -type f
+# 找出 3 天內被改动过的文件 (2017/11/25 12:00 ~ 2017/11/28 12:00 內的文件) (0 ~ 72 小时內)
+find /var/log/ -mtime -3 -type f
+# 找出前第 3 天被改动过的文件 (2017/11/24 12:00 ~ 2017/11/25 12:00 內的文件) (72 ~ 96 小时)
+find /var/log/ -mtime 3 -type f
+# 找出第 3 天被改动过的文件 (也可以这样写)
+find /var/log/ -mtime +2 -mtime -4 -type f
+
 #查找所有".h"文件中的含有"helloworld"字符串的文件（组合命令）
 find /PATH -name "*.h" -exec grep -in "helloworld" {} \;
 #获取文件夹
