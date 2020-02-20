@@ -5,14 +5,17 @@
 # https://blog.csdn.net/ktigerhero3/article/details/70313350
 cmake_minimum_required(VERSION 3.2)
 project(test)
+#CMake会根据这个工程名生成两个变量 ${TEST_SOURCE_DIR} ${HELLO_BINARY_DIR},
+#前者是当前source源文件所在路径，后者是生成的二进制文件锁在路径，
+#（建立build,在build生成中间文件和目标文件，和源文件分离）这时两变量值不同，否则相同。
 set (Tutorial_VERSION_MAJOR 1)
 set (Tutorial_VERSION_MINOR 0)
 #set(CMAKE_CXX_STANDARD 11)
 # 查找当前目录下的所有源文件并将名称保存到 DIR_SRCS 变量
 #aux_source_directory(. SOURCES)  # 这个是添源文件的 aux_source_directory(./world_src DIR_WORLD_SRCS)
 # 添加头文件路径
-include_directories ("${PROJECT_SOURCE_DIR}/Log")
-# 添加库文件路径
+include_directories ("${PROJECT_SOURCE_DIR}/Log") # 相当于GCC中的-I
+# 添加库文件路径 相当于GCC中的-L
 link_directories ("${PROJECT_SOURCE_DIR}/Log") # find_library find_package 这两个和该功能一样。如果不生成库文件 其实没用。增加lib查找路径
 #find_library(TIFF_LIBRARY
 #                NAMES tiff tiff2
@@ -44,6 +47,21 @@ configure_file (
 set(CMAKE_CXX_FLAGS   "-std=c++11")             # c++11
 set(CMAKE_CXX_FLAGS   "-g")                     # 调试信息
 set(CMAKE_CXX_FLAGS   "-Wall")                  # 开启所有警告
+
+#变量#################################################
+# 变量使用
+# https://www.cnblogs.com/rickyk/p/3872568.html
+# 1 命令行中 -Daddress=xxx
+# 2 set(var hello)
+# message(${var})
+# 3 CMakeLists中定义默认 option(address "This is a option for address" ON)
+# 
+# 4 判断变量有没有定义过
+# if(DEFINED address)
+# else()
+# endif()
+# 
+# add_definitions(-DDEBUG) # 将在gcc命令行添加DEBUG 宏定义 ，那么在源文件里 #ifdef DEBUG #endif 来操作
 
 #常量#################################################
 # CMAKE_BINARY_DIR <projectname>_BINARY_DIR 和PROJECT_BINARY_DIR 变量
