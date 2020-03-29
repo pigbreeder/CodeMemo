@@ -102,3 +102,21 @@ install(FILES ${PROJECT_SOURCE_DIR}/Log/Log.hpp DESTINATION include)
 #技巧#################################################
 #cmake生成makefile之后，CMakeCache.txt可以编辑编译选项。
 #CUDA指定版本 export CUDA_BIN_PATH=/usr/local/cuda-9.0
+#
+#
+#命令行参数#################################################
+#http://zhixinliu.com/2016/02/01/2016-02-01-cmake-cross-compile/  # 交叉编译
+#-H 和-S一样设置src目录path-to-source
+#-B 设置build目录path-to-build
+#https://stackoverflow.com/questions/31090821/what-does-the-h-option-means-for-cmake
+#(上面这两个参数基本不用管 正常用就行)
+#
+#链接参数，去除符号表
+#https://zhuanlan.zhihu.com/p/72475595
+#https://blog.csdn.net/10km/article/details/83212925
+#https://www.jianshu.com/p/af6d0cefdfae
+#.symtab	包含大量的信息（包括全局符号global symbols）
+#.dynsym	只保留.symtab中的全局符号
+#ld中 -s和-S的区别在于-S移除调试符号信息，而-s移除所有符号信息。
+##CMAKE 使用
+#set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -s")
