@@ -100,24 +100,6 @@ done
 #统计连接数
 netstat -n | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}'
 
-#统计平均值等：
-grep "takes" voice-call-guanyun.log | cut -d' ' -f20 | awk '
-BEGIN{
-    min=1000;max=0;tot=0;cnt=0;
-}
-{
-    if(max < $0){
-        max=$0;
-    }
-    if(min>$0){
-        min=$0;
-    }
-    tot +=$0;
-    cnt+=1;
-}
-END{
-    printf ("max=%d,min=%d,avg=%d\n",max,min,tot/cnt);
-}'
 #sort 连用
 awk 'BEGIN{
 a[100]=100;
@@ -133,3 +115,28 @@ awk -F'\t' 'NR>1{cols=(cols<=NF?NF:cols); for (i=1; i<=NF; i++) max[i]=(length($
 # 字符串中某个字符出现次数
 # http://bbs.chinaunix.net/thread-1026122-1-1.html
 echo "abcdabc1234abc" | awk -F'a' '{print NF-1}'
+
+# 平均数 最大最小 中位数 计算
+cat $file |grep "$prefix" |cut -d':' -f2|sort -n | awk '
+  BEGIN {
+    c = 0;
+    sum = 0;
+  }
+  $1 ~ /^(\-)?[0-9]*(\.[0-9]*)?$/ {
+    a[c++] = $1;
+    sum += $1;
+  }
+  END {
+    ave = sum / c;
+    if( (c % 2) == 1 ) {
+      median = a[ int(c/2) ];
+    } else {
+      median = ( a[c/2] + a[c/2-1] ) / 2;
+    }
+    OFS="\t";
+    print "sum", "nums", "avg", "median", "min", "max";
+    print sum, c, ave, median, a[0], a[c-1];
+  }
+'
+# 统计单词个数
+awk '{for(i=1;i<=NF;i++) a[$i]++} END {for(k in a) print k,a[k]}' testfile | sort -k 2 -n
