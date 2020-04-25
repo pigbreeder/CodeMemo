@@ -67,3 +67,24 @@ git push origin :<branchName>
 创建分支 git branch Name
 创建并切换 git checkout -b Name
 
+tag 操作
+git tag 查看当前分支下的标签 
+git tag -a v1.4 -m "my version 1.4" 创建标签
+git tag -d <Tag 名字> 删除
+
+git push origin v0.1.2 将v0.1.2标签提交到git服务器
+submodule
+# https://zhuanlan.zhihu.com/p/87053283
+# https://segmentfault.com/a/1190000003076028
+# 
+正确使用多个key
+cat ~/.ssh/config
+Host aaa.github.com
+Hostname  github.com
+User aaa
+IdentityFile ~/.ssh/id_rsa_aaa
+
+host bbb.github.com
+Hostname  github.com
+User bbb
+IdentityFile ~/.ssh/id_rsa_bbb
