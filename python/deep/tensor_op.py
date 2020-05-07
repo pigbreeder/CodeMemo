@@ -10,6 +10,11 @@ torch.stack(seq, dim=0, out=None) #同上
 tensorA[:,:0:0] 选取但是保持维度
 tensorA[:,:None] == tensorA.unsqueeze(2)
 
+# masked_select, the shape of mask is equal to tensor.
+a = torch.Tensor([[4,5,7], [3,9,8],[2,3,4]])
+b = torch.Tensor([[1,1,0], [0,0,1],[1,0,1]]).type(torch.ByteTensor)
+c = torch.masked_select(a,b)
+
 # gather的用法
 遍历一遍另一个维度，过程中选取对应位置上的值。
 

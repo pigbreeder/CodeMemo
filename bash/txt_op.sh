@@ -9,6 +9,19 @@ awk '{print $2,$1 > "id.txt"}' id.txt
 # 分列输出
 awk -F'\t' '{print $1>"file1"; print $2>"file2"}' file
 awk 'NF' file # 去除空行
+
+# 打印指定行
+# print line number 52
+sed -n '52p' # method 1
+sed -n '20,40p;41q' file_name
+
+# 查找utf8编码
+grep -P -rn "[\x80-\xFF]" file
+cat j2c_1217.sub.jp |sed '168783d;546003d' > j2c_1217.sub.sed.jp 
+
+grep -P "[\x80-\xFF]" file.xml
+https://stackoverflow.com/questions/3001177/how-do-i-grep-for-all-non-ascii-characters/3001626#3001626
+
 #Cut=========================================================================
 #https://www.cnblogs.com/dong008259/archive/2011/12/09/2282679.html
 #-c ：以字符为单位进行分割，-d选项的默认间隔符就是制表符，-f取域。

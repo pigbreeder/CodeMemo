@@ -57,7 +57,7 @@ git ls-files
 分支操作
 拉取分支 git fetch origin
 切换到远程分支 git checkout origin/remoteName -b remoteName
-创建新分支 git checkout -b newBranch  ; 
+创建新分支 git checkout -b newBranch
 推送到远端 git push origin newBranch:newBranch  git push <远程主机名> <本地分支名>:<远程分支名>
 删除远程分支 git push origin -- delete <branchName> 
 git push origin :<branchName>
