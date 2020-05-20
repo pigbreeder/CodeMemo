@@ -47,7 +47,28 @@ head -n 1000 #显示前面1000行
 sed -n '5,10p' filename #这样你就可以只查看文件的第5行到第10行。
 
 #find========================================================================
-# find . -name 'patten' -print0|xargs --null Do something
+#find
+# https://blog.csdn.net/ytmayer/article/details/6364739
+# https://blog.csdn.net/GSYzhu/article/details/38115529
+# https://www.runoob.com/linux/linux-comm-find.html
+print0 和xargs -0配合
+
+----(+n)---------|------------(n)--------------|---------(-n)----
+   (n+1)*24H前   |    (n+1)*24H ~ n*24H之间  |  n*24H以内
+
+-ctime -n    查找距现在 n*24H 内修改过的文件
+-ctime n    查找距现在 n*24H 前, (n+1)*24H 内修改过的文件
+-ctime +n    查找距现在 (n+1)*24H 前修改过的文件
+
+mtime 1 # [now-48,now-24]
+mtime +1#[-inf, now-24]
+mtime -1#[now
+
+wc -c filename | awk '{print $1}'
+
+shell stat --printf="%s" file.any 获取文件大小
+
+# find . -name 'patten' -print0|xargs --0 Do something
 find ./ -mtime 0  #查找一天内修改的文件
 find ./ -mtime -2 #查找2天内修改的文件，多了一个减号
 find ./ -mmin  -10  #查找距离现在10分钟内修改的文件

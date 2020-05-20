@@ -44,6 +44,23 @@ a = numpy.where(cond>2,b1,b2) # 长度须匹配# [1,2,-3,-4]
 统计数值sum(ret) or  from collections import Counter
 TN = (ret[labels==0]==0).sum()
 ######################################################
+
+# 1个句子，60000词表大小，做一次分解(768 128) 耗时
+
+ori_W = np.random.randn(60000,768)
+factorized_W1 = np.random.randn(600000,128)
+factorized_W2 = np.random.randn(128,768)
+
+# exp1: 
+text = np.random.randint(0,60000,(1,30))
+time factor_input = np.dot(factorized_W1[text] ,factorized_W2)
+time ori_input = ori_W[text]
+
+# exp2: 
+text = np.random.randint(0,60000,(3,30))
+time factor_input = np.dot(factorized_W1[text] ,factorized_W2)
+time ori_input = ori_W[text]
+
 ```
 ```
 # https://www.runoob.com/numpy/numpy-array-manipulation.html

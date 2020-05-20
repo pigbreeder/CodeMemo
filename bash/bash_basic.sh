@@ -7,6 +7,14 @@ export CONF_PATH=${CONF_PATH:-"$curdir/../conf"}
 source $CONF_PATH/my.conf
 #变量引号处理/连接起来
 echo 'fuck'$fuck"fuck"
+
+# 遍历文件 natural sort of (version) numbers within text
+for file in log{1..164}.gz; do
+    process "$file"
+done
+ls -1v log*
+sort -V
+
 #默认程序
 #source $curdir/common.sh
 #
