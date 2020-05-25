@@ -6,6 +6,9 @@
 - shift+f11 新建sheet
 - ctrl+right/up 最右/上  
 - alt+回车 换行
+- 转到合适位置
+- 选中某列某行，ctrl+上下左右。ctrl+G
+- 合适宽度 按两次【ctrl】+【A】，然后在任意一列中间用鼠标双击即可。
 - 按住shift一起移动 交换
 - 先按'再输就按照文本处理
 - ctrl+; 日期 ctrl+shift+; 时间
