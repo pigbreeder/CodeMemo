@@ -15,6 +15,15 @@ awk 'NF' file # 去除空行
 sed -n '52p' # method 1
 sed -n '20,40p;41q' file_name
 
+# 字符串分割
+echo $str | awk -F',' '{for( i=1;i<NF; i++ ) print $i}' 
+
+str="hello,world,i,like,you,babalala"  
+for i in `echo "$str" | sed 's/,/\n/g'`
+do  
+    echo $i  
+done
+
 # 查找utf8编码
 grep -P -rn "[\x80-\xFF]" file
 cat j2c_1217.sub.jp |sed '168783d;546003d' > j2c_1217.sub.sed.jp 

@@ -71,7 +71,7 @@ done
 re="http://([^/]+)/"
 if [[ $name =~ $re ]]; then echo ${BASH_REMATCH[1]}; fi
 }
-
+# 数组
 array(){
 	#声明
 	a=(3 9 "234" 3.2 2 0 )
