@@ -102,6 +102,9 @@ install(FILES ${PROJECT_SOURCE_DIR}/Log/Log.hpp DESTINATION include)
 #技巧#################################################
 #cmake生成makefile之后，CMakeCache.txt可以编辑编译选项。
 #CUDA指定版本 export CUDA_BIN_PATH=/usr/local/cuda-9.0
+#https://www.cnblogs.com/zjutzz/p/10704439.html  
+#CUDA_TOOLKIT_ROOT_DIR
+#export OPENCV_DIR=;cmake ..
 #
 #
 #命令行参数#################################################
