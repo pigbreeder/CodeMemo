@@ -1,4 +1,6 @@
 
+## situation
+\x1c 错误可能是CUDA内存被占用
 ## 查看变量增长位置
 ```
 # before_fairseq_model >>>>>>>>>>>>>>>>>>>>
