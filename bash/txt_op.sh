@@ -64,7 +64,9 @@ grep -rio --exclude-dir={ece,pytorch,sys,proc} 'hello' /
 -R 链接符号的文件也搜索
 仅搜索单词 -w
 egrep 'word1|word2'
+grep -e 'word1' -e 'word2'
 #Sed=========================================================================
+#sed -r 使用扩展正则 +?不用再加\
 echo "Ã" | hexdump -C
 echo "Ã" |sed 's/\xc3\x83/A/g'
 # 替换匹配的文本中部分内容
@@ -75,6 +77,16 @@ var=hello
 sed "4s/log.eval.batch.*/log.eval.batch.$var/g" 
 # 对于路径中/的处理
 sed -i "s#parent_dir=.*#parent_dir=${parent_dir}#g" ./basic.conf
+
+sed -n 只打印受到影响的行
+cat asdf
+```
+   src set "test" (1 docs, 2440 segs) 
+  BLEU-SBP doc score using 4-grams = 0.3027 for system "yodao" on segment 1 of document "none" (13 words)
+
+```
+head asdf | sed -n 's/  BLEU-SBP.* = \(0.[0-9]\+\) for.* segment \([0-9]\+\) of .* "none" (\([0-9]\+\) words)/\1\t\2\t\3/gp'
+
 #Awk=========================================================================
 #https://www.cnblogs.com/chengmo/tag/awk/
 #$0	当前记录（作为单个变量）
@@ -155,10 +167,12 @@ cat $file |grep "$prefix" |cut -d':' -f2|sort -n | awk '
     } else {
       median = ( a[c/2] + a[c/2-1] ) / 2;
     }
+    for (i in a){ss += (a[i]-ave)^2} sd = sqrt(ss/c);
     OFS="\t";
-    print "sum", "nums", "avg", "median", "min", "max";
-    print sum, c, ave, median, a[0], a[c-1];
+    print "sum", "nums", "avg", "median", "sd", "min", "max";
+    printf("%.2f\t%d\t%.4f\t%.4f\t%.4f\t%.4f\t%.4f\n",sum, c, ave, median, sd, a[0], a[c-1]);
   }
 '
+
 # 统计单词个数
 awk '{for(i=1;i<=NF;i++) a[$i]++} END {for(k in a) print k,a[k]}' testfile | sort -k 2 -n
