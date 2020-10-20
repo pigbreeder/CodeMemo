@@ -20,4 +20,12 @@ noremap <silent><leader>/ :nohls<CR>
 # 跨panel复制粘贴
 vmap <leader>y :w! ~/.vbuf<cr>
 nmap <leader>p :r ~/.vbuf<cr>
+
+ctrl + o 上次的位置
+ctrl + i 返回上次的位置
+
+u 	撤销
+ctrl + r 重做
+
+ctrl + g 统计当前行数比例
 ```

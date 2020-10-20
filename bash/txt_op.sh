@@ -65,6 +65,8 @@ grep -rio --exclude-dir={ece,pytorch,sys,proc} 'hello' /
 仅搜索单词 -w
 egrep 'word1|word2'
 grep -e 'word1' -e 'word2'
+# 空白行
+grep -n '^\s*$' 
 #Sed=========================================================================
 #sed -r 使用扩展正则 +?不用再加\
 echo "Ã" | hexdump -C
@@ -86,7 +88,7 @@ cat asdf
 
 ```
 head asdf | sed -n 's/  BLEU-SBP.* = \(0.[0-9]\+\) for.* segment \([0-9]\+\) of .* "none" (\([0-9]\+\) words)/\1\t\2\t\3/gp'
-
+cat $1|sed -n 's/.*BLEU-SBP.* = \(0.[0-9]\+\) .*\.\([0-9]\+\).sgm/\1\t\2/gp' | sort -k1 -n -r |head -n5
 #Awk=========================================================================
 #https://www.cnblogs.com/chengmo/tag/awk/
 #$0	当前记录（作为单个变量）
