@@ -43,3 +43,10 @@ top -Hp pid
 find -type f -exec sha1sum {} \; | sort | sha1sum | head -c 5 && echo
 
 alias cuda8='cuda8(){ export CUDA_HOME=/usr/local/cuda-8.0;export CUDA_ROOT=$CUDA_HOME;export PATH=$CUDA_HOME/bin:$PATH;export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH;export LIBRARY_PATH=$CUDA_HOME/lib64:$LIBRARY_PATH;};cuda8'
+ 
+#集合操作
+sort uniq
+sort <file1> <file2> | uniq -d      # 交集
+sort <file1> <file2> | uniq         # 并集
+sort <file1> <file2> <file2> | uniq -u  # 差集
+sort <file1> <file2> | uniq -u  # 对称差，找到两个集合放在一起，也只出现了一次的那些元素

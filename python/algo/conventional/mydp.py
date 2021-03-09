@@ -1,11 +1,10 @@
 #encoding=utf8
-# https://blog.csdn.net/lyhvoyage/article/details/8545852  # 二进制压缩
+# https://blog.csdn.net/lyhvoyage/article/details/8545852  # 二进制压缩 01背包
+# https://www.cnblogs.com/anzhengyu/p/11408466.html
 def knapsack_01(weighs, values, pack_weight):
     arr = [0] * (pack_weight + 1)
     for w, v in zip(weighs, values):
-        for idx in range(pack_weight, 0, -1):
-            if idx < w:
-                break
+        for idx in range(pack_weight, w, -1):
             arr[idx] = max(arr[idx], arr[idx - w] + v)
     return arr[pack_weight]
 # arr[w] arr[2*w] arr[3*w] 遍历顺序
@@ -13,18 +12,16 @@ def knapsack_complete(weighs, values, pack_weight):
     arr = [0] * (pack_weight + 1)
     for w, v in zip(weighs, values):
         for idx in range(w, pack_weight+1):
-            if idx < w:
-                break
             arr[idx] = max(arr[idx], arr[idx - w] + v)
     return arr[pack_weight]
 def knapsack_multiple(weighs, values, nums, pack_weight):
     arr = [0] * (pack_weight + 1)
     for i,(w, v) in enumerate(zip(weighs, values)):
-        for _ in range(nums[i]):
-            for idx in range(w, pack_weight+1):
-                if idx < w:
+        for idx in range(pack_weight, w, -1):
+            for num in range(nums[i]):
+                if w*num > pack_weight:
                     break
-                arr[idx] = max(arr[idx], arr[idx - w] + v)
+                arr[idx] = max(arr[idx], arr[idx - w*num] + v*num)
     return arr[pack_weight]
 weights = [77,22,29,50,99]
 values = [92,22,87,46,90]
@@ -44,6 +41,15 @@ r = knapsack_01(weights,values,weight)
 print(r)
 
 ##############################################
+# LIS
+def getLIS(self, A, n):
+    L = [1]*n
+    for cur,val in enumerate(A):
+        for pre in range(cur):
+            if A[pre]<=A[cur]:
+                L[cur] = max(L[cur],1 + L[pre])
+
+    return max(L)
 # LCS
 def LCS(s1, s2):
     l1 = len(s1) + 1
@@ -90,11 +96,26 @@ print('matrix_chain=', matrix_chain(arr))
 
 
 
+# 股票买卖最佳时机
+# https://blog.csdn.net/qq_35865125/article/details/89818929
+
+# 最优二叉搜索树
+# 二维矩阵枚举中间点,边界为0
+# https://zhuanlan.zhihu.com/p/54171342
+# https://blog.csdn.net/zhang_xiaomeng/article/details/72820147
 
 
 
+# 剪绳子
+# https://leetcode-cn.com/problems/jian-sheng-zi-lcof/solution/jian-zhi-offer-14-i-jian-sheng-zi-huan-s-xopj/
+# dp[2] = 1
+# dp[i] = max(dp[i], max(j * (i - j), j * dp[i - j]))
 
-
-
-
-
+class Solution:
+    def cuttingRope(self, n: int) -> int:
+        dp = [0] * (n + 1)
+        dp[2] = 1
+        for i in range(3, n + 1):
+            for j in range(2, i):
+                dp[i] = max(dp[i], max(j * (i - j), j * dp[i - j]))
+        return dp[n]

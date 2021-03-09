@@ -1,4 +1,18 @@
 #!/bin/bash
+# 读取文件
+echo "$a" | while read i  
+do  
+  
+done  
+
+while read line
+do
+    ret=`grep -n $line tmp`
+    if [[ $ret ]]; then
+      echo $line
+    fi
+done < asdf
+
 # 合并两行
 paste -d "\t"  - - < filename
 awk 'NR%2{printf "%s ",$0;next;}1' yourFile

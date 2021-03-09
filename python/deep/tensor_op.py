@@ -74,3 +74,21 @@ output = K.logsumexp(states+trans, 1) # (batch_size, output_dim)
 # states是batch的，先让trans 扩展一个batch维度。states扩展最后的output_dim是因为要加上转移矩阵各个位置，这样用了broadcast就能解决这个问题
 # output 是转移后的结果，加上input相当于Z(各个步骤的和)
 # 对数加法，exp() 这种矩阵本身的转移方式就是用加法来做。 states+trans事实上就是说“把矩阵任意两个数相乘，然后放在那里”（相当于张量的笛卡尔积）logsumexp 所以用加法，因为加完以后是exp指数相当于乘法
+
+
+
+# tensor的几个用法
+#1> scheduled sampling 按照概率从length选择，关键点是unsqueeze(1)这个，a[:,i,:] 这个选出来是[batch,dim]如果再cat就成了[length*batch]
+a=t.arange(30).reshape(2,5,3)
+b=t.arange(100,130).reshape(2,5,3)
+t.cat(([a[:,i,:].unsqueeze(1) if random.random() < 0.5 else b[:,i,:].unsqueeze(1) for i in range(5)]),dim=1)
+2> huawei-noah/Pretrained-Language-Model  
+   计算head的重要性，都用mask，然后乘法，(计算去掉head之前和之后的loss变化，变化越大则越重要。）如果屏蔽是加法加-inf，
+   head_importance += head_mask.grad.abs().detach()
+
+https://github.com/huawei-noah/Pretrained-Language-Model/blob/1bb9b3e49b05279a4ba5cbe805ac81c803f94981/DynaBERT/transformers/modeling_bert.py
+
+# head_mask is converted to shape [num_hidden_layers x batch x num_heads x seq_length x seq_length]
+head_mask = torch.ones(n_layers, n_heads).to(args.device)
+head_mask = head_mask.unsqueeze(1).unsqueeze(-1).unsqueeze(-1)  # We can specify head_mask for each layer
+head_mask = head_mask.unsqueeze(0).unsqueeze(0).unsqueeze(-1).unsqueeze(-1)
