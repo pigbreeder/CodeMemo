@@ -201,4 +201,31 @@ squeeze 压缩维度为1的numpy向量
 argmax 获取最大值的下标
 permute  维度换位
 swapaxes 交换两个轴
+
+
+
+
+# numpy 打印问题不包含逗号，不好复制
+# https://www.cnpython.com/qa/44017
+np.set_printoptions(threshold=np.nan)
+print(repr(npdata))
+pprint.pprint(ndata)
+
+
+# argsort得到位置关系，然后得到分数
+np.argsort(-x) #按降序排列
+https://stackoverflow.com/questions/20103779/index-2d-numpy-array-by-a-2d-array-of-indices-without-loops
+https://stackoverflow.com/questions/16396141/python-numpy-2d-array-indexing  # 一个pair是一个位置，如何
+如果是一维，idx = data.argsort(), data[idx]
+二维就要注意了，第一个维度是np.arnage(data.shape(0))
+predictions = m(accelerator.gather(logits).detach().to('cpu')).numpy()
+predictions_data = np.argsort(-predictions, axis=-1)[:,:num]
+predictions_score = predictions[np.arange(predictions.shape[0])[:,None], predictions_data]
+print(predictions_data)
+print(predictions_score)
+for i,j in zip(predictions_data,predictions_score):
+    pstr = '\t'.join(map(lambda x:id_to_label[x[0]]+','+str(x[1]),zip(i,j)))
+    print(pstr)
+    pstrs.append(pstr)
+
 ```

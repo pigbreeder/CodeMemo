@@ -33,7 +33,9 @@ basename filename #得到文件名
 
 #随机数据分开
 shuf source.txt > source_shuffle.txt
-
+# 数据集分割
+# split是按大小来拆分的话，那么csplit则可按匹配来拆分
+csplit filename n
 
 #【一】从第3000行开始，显示1000行。即显示3000~3999行
 cat filename | tail -n +3000 | head -n 1000

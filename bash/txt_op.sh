@@ -29,6 +29,10 @@ awk 'NF' file # 去除空行
 sed -n '52p' # method 1
 sed -n '20,40p;41q' file_name
 
+# 打印指定列，倒数列
+awk -F ':' '{print OFS="\t" $1,$4}' file
+cat *|awk -F'\t' '{if($(NF-1) == "正常题目" && $NF == "否"){print $1"\t"$2"\t"$4}}'
+
 # 字符串分割
 echo $str | awk -F',' '{for( i=1;i<NF; i++ ) print $i}' 
 
@@ -192,3 +196,73 @@ cat $file |grep "$prefix" |cut -d':' -f2|sort -n | awk '
 
 # 统计单词个数
 awk '{for(i=1;i<=NF;i++) a[$i]++} END {for(k in a) print k,a[k]}' testfile | sort -k 2 -n
+
+
+################################ 去重汇总
+# 根据某列去重
+1 awk -F"," '!_[$1]++' file
+2 sort -u -t, -k1,1 file
+3 uniq -f1 file # 忽略某一行
+uniq
+cat <filename> | sort | uniq -d     # 只显示重复的行，每行只显示一次
+cat <filename> | sort | uniq -D     # 只显示重复的行
+cat <filename> | sort | uniq -i     # 忽略大小写
+cat <filename> | sort | uniq -u     # 只显示只出现一次的行
+cat <filename> | sort | uniq -c     # 统计每行重复的次数
+
+去重第一列重复的行：
+[root@localhost cc]# cat 2.txt |awk '!a[$1]++{print}'
+adc 3 5
+a d a
+
+重复的行取最上面一行记录
+
+去重以第一列和第二列重复的行：
+
+[root@localhost cc]# cat 2.txt |awk '!a[$1" "$2]++{print}'
+adc 3 5
+a d a
+a 3 adf
+
+去除重复的行：
+
+[root@localhost cc]# cat 2.txt |awk '!a[$0]++{print}'
+adc 3 5
+a d a
+a 3 adf
+a d b
+
+只显示重复行：
+
+[root@localhost cc]# cat 2.txt |awk 'a[$0]++{print}'
+a 3 adf
+
+################################  集合运算
+
+用cat，sort，uniq命令实现文件行的交集 、并集、补集
+交集 𝐹1∩𝐹2F1∩F2
+cat f1 f2 | sort | uniq -d
+并集 𝐹1∪𝐹2F1∪F2
+cat f1 f2 | sort | uniq 
+并集 - 交集 𝐹1-𝐹2
+cat f1 f2 f2| sort | uniq -u
+对称差，就是要找到两个集合放在一起，也只出现了一次的那些元素
+cat f1 f2 | sort | uniq -u
+
+
+join使用
+主要是a1/2（左右连接），o（制定输出），1/2（指定连接的列）
+https://www.cnblogs.com/agilework/archive/2012/04/18/2454877.html
+
+
+
+# 打印行中有空白的情况
+IFS=$'\n'
+for i in `cat coder.txt`; do echo "$i"; done
+unset IFS
+
+
+
+# 从一个文件里面去重 过滤集合
+https://unix.stackexchange.com/questions/299462/how-to-filter-out-lines-of-a-command-output-that-occur-in-a-text-file
+grep -v -x -F -f forbidden.txt input.txt

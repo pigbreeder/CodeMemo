@@ -1,0 +1,25 @@
+mac设置
+	触控板设置的方式
+		1 查询与数据检测 - 三指轻点
+		2 辅助点按 - 双指轻点
+		3 轻点来点按
+		4 页面轻扫 - 双指左右滑动，（看网页前进后退）
+		5 调度中心，四指向上 （所有窗口之间切换）
+		5 app expose - 四指向下 （app多页面间切换）
+		6 辅助功能 - 指针控制 启用拖移，三指拖移
+	屏幕保护
+		触控角，左下角锁屏
+	
+	小点
+		finder，【option+command+p】显示路径栏
+		docker，拉着缩小，去掉不常用的尽量充分利用屏幕
+	安装程序
+		sublime
+		pycharm
+		jupyter
+		brew
+		pip
+		 ~/.pip/pip.conf (没有就创建一个)， 修改 index-url至tuna，内容如下：
+
+		 [global]
+		 index-url = https://pypi.tuna.tsinghua.edu.cn/simple
