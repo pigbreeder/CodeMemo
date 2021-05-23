@@ -1,9 +1,26 @@
 
-https://zhuanlan.zhihu.com/p/55409307
-https://www.zybuluo.com/hanxiaoyang/note/534296
-https://www.voidking.com/dev-jupyter-debug/
+https://zhuanlan.zhihu.com/p/55409307  
+https://www.zybuluo.com/hanxiaoyang/note/534296  
+https://www.voidking.com/dev-jupyter-debug/  
 
 ```
+
+# ipy导出py
+ipython nbconvert — to script abc.ipynb
+# 导入ipy函数
+pip install ipynb
+from ipynb.fs.full.my_functions import factorial
+
+%who      列出所有变量
+%who_ls   以列表形式列出所有变量
+%whos     展示所有变量更详细的信息
+
+按住Alt拖动鼠标              多行编辑、矩形选框
+按住Ctrl在多个位置点击鼠标    多处同时编辑
+
+Shift + Tab 显示刚刚在代码单元中键入的对象的文档字符串（文档），可以继续按此快捷键以循环浏览几种文档模式。
+
+
 # jupyter 每行都显示，不用print
 from IPython.core.interactiveshell import InteractiveShell
 InteractiveShell.ast_node_interactivity = "all"
