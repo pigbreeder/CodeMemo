@@ -35,7 +35,10 @@ df.iloc[idx,idx_col], df.loc[idx_name,idx_name_col], df.iax[i,j]
 
 
 # pandas 加载数据None，字符串为空等情况
-to_csv(keep_default_na=False)
+to_csv(keep_default_na=False, encoding='utf-8_sig') # 如果用excel打开是乱码则这样encoding，读取excel用gb2312
+
+# 新生成一列，用split
+df[['top1_name', 'top1_score']] = out_df.iloc[:,0].str.split(':',1,expand=True)
 
 # 遍历
 for i, row in colTypes.iterrows():
@@ -66,4 +69,22 @@ df[given_labels] 看指定的label 准确，df.loc[label] recall
 # https://zhuanlan.zhihu.com/p/35494575
 # 现实方块和内部数字，fmt不使用科学计数法，robust : 如果“Ture”和“ vmin或” vmax不存在，则使用强分位数计算颜色映射范围，而不是极值。
 sns.heatmap(data, square=True, annot=True, fmt='.20g',robust=True)
+
+
+
+
+
+# 绘图相关
+
+https://www.cnblogs.com/Cheryol/p/13513871.html
+https://blog.csdn.net/qq_18668137/article/details/103766163 # 绘图时x轴标签重叠的解决办法
+df_sex.plot(kind='bar',stacked = True,figsize=(20,10))
+
+histogram的横坐标是连续变量，将连续变量分成固定的组，组别之间是固定不变的。例如:
+横坐标：1-10, 11-20, 21-30, 31-40. (横坐标无法改变顺序)
+纵坐标：每组的频次 或者 比例
+bar chart的横坐标为分类变量，例如：
+横坐标：去学校的各种交通方式，走路，骑车，打车，开车 （横坐标无先后顺序 可自由调整）
+纵坐标：每种交通方式的频次 或者 比例
+
 ```
