@@ -42,6 +42,7 @@ df[['top1_name', 'top1_score']] = out_df.iloc[:,0].str.split(':',1,expand=True)
 
 # 遍历
 for i, row in colTypes.iterrows():
+.iterrows() # 更快
 
 # 连续变离散 cut
 np.random.seed(666)  #让结果可重复
@@ -52,8 +53,36 @@ pd.qcut(ser,
     q=[0, .10, .20, .3, .4, .5, .6, .7, .8, .9, 1],
     labels=['1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th','10th'])
 
+# qcut 按照数量均分到各个桶
+# cut 按照range均分 很直观
+# https://zhuanlan.zhihu.com/p/68194655
+factors = np.random.randn(30)
+pd.qcut(factors, 5).value_counts()
+pd.cut(factors, 5).value_counts()
 
 
+pd series连接
+pd.concat([s1, s2], axis=1).reset_index()
+按照index排序
+sort_index
+https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.sum.html
+# 理解多层index的筛选方式
+
+# 集合运算
+交集
+intersected_df = pd.merge(df1, df2, how='inner')
+并集
+intersected_df = pd.merge(df1, df2, how='outer')
+指定列
+取并集：print(pd.merge(df1,df2,on=['name', 'age', 'sex'], how='outer'))
+差集
+set_diff_df = pd.concat([df2, df1, df1]).drop_duplicates(keep=False)
+
+# series调换index和value
+https://stackoverflow.com/questions/40146472/quickest-way-to-swap-index-with-values
+print(pd.Series(s.index.values, index=s ))
+
+----------------------------------------------------------------------------------------
 
 # 混淆矩阵
 from sklearn.metrics import confusion_matrix
