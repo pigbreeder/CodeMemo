@@ -1,5 +1,7 @@
 #!/bin/bash
 set -x
+alias scpme='_a(){ scp xsy@ip_address:${1} $2;}; _a'
+
 curdir=`cd $(dirname $0);pwd`
 #如果变量var没有被声明，那么就使用默认值，否则就是用var初始化的值
 export CONF_PATH=${CONF_PATH:-"$curdir/../conf"} 

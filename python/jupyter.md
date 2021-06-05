@@ -5,6 +5,10 @@ https://www.voidking.com/dev-jupyter-debug/
 
 ```
 
+# jupyter 使用 tensorboard
+%load_ext tensorboard
+%tensorboard --host 0.0.0.0 --logdir ./old_version/runs/
+
 # ipy导出py
 ipython nbconvert — to script abc.ipynb
 # 导入ipy函数

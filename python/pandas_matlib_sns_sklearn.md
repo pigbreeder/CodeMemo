@@ -31,7 +31,7 @@ columns:df['label']
 rows:df[idx1:idx2]
 
 cells: 
-df.iloc[idx,idx_col], df.loc[idx_name,idx_name_col], df.iax[i,j]
+df.iloc[idx,idx_col], df.loc[idx_name,idx_name_col]
 
 
 # pandas 加载数据None，字符串为空等情况
@@ -81,6 +81,32 @@ set_diff_df = pd.concat([df2, df1, df1]).drop_duplicates(keep=False)
 # series调换index和value
 https://stackoverflow.com/questions/40146472/quickest-way-to-swap-index-with-values
 print(pd.Series(s.index.values, index=s ))
+
+
+# 去重
+dframe.duplicated() # 检测重复行
+dframe.drop_duplicates()  # 丢弃行
+dframe.drop_duplicates('color') # 根据字段去重
+可以找到具有unique = df [df.duplicated()]的所有唯一行,
+然后使用unique.iterrows()迭代唯一条目,并在pd.where()的帮助下提取相等条目的索引
+
+# pd 注意设置值的方式
+df.iloc[filter_condition,'loc_name'] = set_value 👌
+df.iloc[filter_condition]['loc_name'] = set_value 😂
+筛选后连接，reset_index 不然连接有问题
+# 注意链式分配
+df[df.A == 0]['B'] = 10 # 错误用法
+df1 = [df.A == 0];df1.loc[0, 'B'] = 10 # 错误用法，错误引用
+df[df.A == 0, 'B'] = 10 # right
+https://zhuanlan.zhihu.com/p/40874154
+
+
+# 划分测试集
+train_data = dataset.sample(frac=0.95,random_state=0,axis=0)
+other_data = dataset[~dataset.index.isin(train_data.index)]
+dev_data = other_data.sample(frac=0.5,random_state=0,axis=0)
+test_data = other_data[~other_data.index.isin(dev_data.index)]
+alias scpme='_a(){ scp xsy@ip_address:${1} $2;}; _a'
 
 ----------------------------------------------------------------------------------------
 
