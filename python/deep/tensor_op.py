@@ -1,4 +1,17 @@
 
+
+
+
+# WeightedRandomSampler
+https://blog.csdn.net/tyfwin/article/details/108435756
+
+# Loss 损失函数
+https://blog.csdn.net/xiaohuihui1994/article/details/93049975
+https://www.cnblogs.com/wynlfd/p/14101373.html
+pytorch 做多分类和多类别
+BCEWithLogitsLoss用于单标签二分类或者多标签二分类
+CrossEntropyLoss用于多类别分类，输出和目标的维度是(batch,C)，batch是样本数量，C是类别数量，每一个C之间是互斥的，相互关联的，对于每一个batch的C个值，一起求每个C的softmax
+
 # https://zhuanlan.zhihu.com/p/36233589
 # 
 torch.cat(seq,dim=0,out=None) 

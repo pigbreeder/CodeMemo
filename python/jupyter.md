@@ -69,7 +69,7 @@ magic
 设置环境变量
 %env OMP_NUM_THREADS=4
 %matplotlib：inline
-运行ipy和py
+运行ipy和py，快速导入ipy里面的内容（引入函数）
 %run ./two-histograms.ipynb
 %load：从外部脚本中插入代码
 %store: 在notebook文件之间传递变量
@@ -78,8 +78,8 @@ magic
 %%time 会告诉你cell内代码的单次运行时间信息。
 %timeit 使用了Python的 timeit 模块，该模块运行某语句100，000次（默认值），然后提供最快的3次的平均值作为结果。
 %prun: 告诉你程序中每个函数消耗的时间
-%%writefile myFirstBook.py # 这里，myFirstBook.py是任意你想保存的文件名 
-%%pcat
+%%writefile myFirstBook.py # 将当前cell中内容写入文件中
+%pycat：预览文件，类似linux中cat
 
 %pdb调试程序
 %debug

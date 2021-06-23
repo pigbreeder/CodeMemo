@@ -1,3 +1,37 @@
+
+# flush 刷新缓冲区 为了写文件中途出问题终止浪费调用
+import sys,time
+for i in range(30): #进度条类型 
+    sys.stdout.write("*")
+    sys.stdout.flush()
+    time.sleep(0.2)
+
+# glob使用
+for name in glob.glob('*[0-9]*.txt'):
+for name in glob.iglob('**/*.py', recursive=True):
+    print(name)
+
+# zip 和 unzip 
+import numpy as np
+a=[1,2,3]
+b=[4,5,6]
+c=[7,8,9]
+zz=zip(a,b,c)
+print(zz)
+
+x,y,z=zip(*zz)
+print(x)
+print(y)
+print(z)
+
+输出：
+[(1, 4, 7), (2, 5, 8), (3, 6, 9)]
+(1, 2, 3)
+(4, 5, 6)
+(7, 8, 9)
+
+
+
 # 得到符合的数据下标
 filter_idx = list(filter(lambda x: words[x] in dict_table, range(len(words))))
 # 从列表中挑选(如果是numpy则直接data[filter_idx]。字典智能挨个找，numpy也没用
