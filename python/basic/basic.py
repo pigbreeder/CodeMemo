@@ -21,6 +21,26 @@ dt = datetime.now()
 with open('file.txt', 'w') as f:
     print('hello world', file=f)
 
+# flush 刷新缓冲区
+import sys,time
+for i in range(30): #进度条类型 
+    sys.stdout.write("*")
+    sys.stdout.flush()
+    time.sleep(0.2)
+
+# glob使用
+for name in glob.glob('*[0-9]*.txt'):
+for name in glob.iglob('**/*.py', recursive=True):
+
+#读文件使用
+f.read().splitlines()
+
+# 得到各个文件名称
+import os
+file_path = "D:/test/test.py"
+(filepath,tempfilename) = os.path.split(file_path)
+(filename,extension) = os.path.splitext(tempfilename)
+
 
 
 # list 复制
